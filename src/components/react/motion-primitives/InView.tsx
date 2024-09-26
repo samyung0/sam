@@ -51,7 +51,7 @@ export function InView({
   const isInView = useInView(ref, viewOptions);
 
   return (
-    <motion.div
+    <motion.section
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
@@ -59,6 +59,6 @@ export function InView({
       transition={transition}
     >
       {children}
-    </motion.div>
+    </motion.section>
   );
 }
