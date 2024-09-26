@@ -6,18 +6,35 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const ReactPortabletext = ({ post }: { post: Post }) => {
   const [highlighter, setHighlighter] = React.useState<shiki.HighlighterCore>();
-  const [loadedLangs, setLoadedLangs] = React.useState<Record<string, boolean>>({});
+  const [loadedLangs, setLoadedLangs] = React.useState<Record<string, boolean>>(
+    {}
+  );
 
   React.useEffect(() => {
     (async () => {
       setHighlighter(
         await shiki.createHighlighterCore({
           langs: [import("shiki/langs/tsx.mjs")],
+          langAlias: {
+            typescript: "tsx",
+            javascript: "tsx",
+            js: "tsx",
+            ts: "tsx",
+          },
           themes: [import("shiki/themes/catppuccin-mocha.mjs")],
           engine: shiki.createJavaScriptRegexEngine(),
         })
       );
-      setLoadedLangs({ ...loadedLangs, tsx: true });
+      setLoadedLangs({
+        ...loadedLangs,
+        tsx: true,
+        typescript: true,
+        js: true,
+        javascript: true,
+        text: true,
+        txt: true,
+        plain: true,
+      });
     })();
   }, []);
 
@@ -34,14 +51,22 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
           const HeadingTag = props.value.style! as any;
 
           if (/^h\d/.test(HeadingTag)) {
-            return <HeadingTag id={props.value.children[0].text}>{props.children}</HeadingTag>;
+            return (
+              <HeadingTag id={props.value.children[0].text}>
+                {props.children}
+              </HeadingTag>
+            );
           }
           return (defaultComponents.block as any)[HeadingTag](props);
         },
         types: {
           inlineImage: (props) => {
             return (
-              <a aria-label="Open Image" target="_blank" href={props.value.asset.url}>
+              <a
+                aria-label="Open Image"
+                target="_blank"
+                href={props.value.asset.url}
+              >
                 <img
                   style={{
                     backgroundImage: `url(${props.value.asset.metadata.lqip})`,
@@ -63,7 +88,11 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
           image: (props) => {
             return (
               <figure className="flex justify-center flex-col items-center">
-                <a aria-label="Open Image" target="_blank" href={props.value.asset.url}>
+                <a
+                  aria-label="Open Image"
+                  target="_blank"
+                  href={props.value.asset.url}
+                >
                   <img
                     style={{
                       backgroundImage: `url(${props.value.asset.metadata.lqip})`,
@@ -80,17 +109,37 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
                     height={props.value.asset.metadata.dimensions.height}
                   />
                 </a>
-                {props.value.caption && <figcaption>{props.value.caption}</figcaption>}
+                {props.value.caption && (
+                  <figcaption>{props.value.caption}</figcaption>
+                )}
               </figure>
             );
           },
           code: (props) => {
             if (
               !highlighter ||
-              (!!props.value.language &&
-                props.value.language !== "text" &&
-                !loadedLangs[props.value.language])
-            )
+              (!!props.value.language && !loadedLangs[props.value.language])
+            ) {
+              if (
+                highlighter &&
+                Object.keys(shiki.bundledLanguages).includes(
+                  props.value.language
+                )
+              ) {
+                highlighter
+                  .loadLanguage(
+                    shiki.bundledLanguages[
+                      props.value.language as shiki.BundledLanguage
+                    ]!
+                  )
+                  .then(() => {
+                    console.log("loaded", props.value.language);
+                    setLoadedLangs({
+                      ...loadedLangs,
+                      [props.value.language]: true,
+                    });
+                  });
+              }
               return (
                 <pre>
                   <code>
@@ -98,13 +147,6 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
                   </code>
                 </pre>
               );
-            if (
-              !Object.prototype.hasOwnProperty.call(loadedLangs, props.value.language) &&
-              Object.keys(shiki.bundledLanguages).includes(props.value.language)
-            ) {
-              highlighter.loadLanguage(props.value.language).then(() => {
-                setLoadedLangs({ ...loadedLangs, [props.value.language]: true });
-              });
             }
             const html = highlighter.codeToHtml(props.value.code, {
               lang: props.value.language ?? "tsx",
@@ -175,7 +217,10 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
             return <code className="inlineCode">{props.children}</code>;
           },
           internalLink: (props) => {
-            if (props.value.type === "author" && props.value.slug === "sam-yung")
+            if (
+              props.value.type === "author" &&
+              props.value.slug === "sam-yung"
+            )
               return <a href="/about">{props.children}</a>;
             return <a href={`/blog/${props.value.slug}`}>{props.children}</a>;
           },
