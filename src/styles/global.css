@@ -55,7 +55,7 @@
     @apply bg-background text-foreground;
   }
   html {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Inter Variable", system-ui, sans-serif;
     -webkit-tap-highlight-color: transparent;
     scrollbar-gutter: stable;
     scrollbar-color: var(--scrollbar-color) transparent;

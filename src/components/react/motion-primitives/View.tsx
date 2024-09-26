@@ -42,13 +42,13 @@ export function View({
   transition = defaultTransition,
 }: InViewProps) {
   return (
-    <motion.div
+    <motion.section
       initial="hidden"
       animate={"visible"}
       variants={variants}
       transition={transition}
     >
       {children}
-    </motion.div>
+    </motion.section>
   );
 }

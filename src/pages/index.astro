@@ -4,11 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { SEO } from "astro-seo";
 import ProfilePic from "../assets/profile.jpg";
 import { Image } from "astro:assets";
-import {
-  View,
-  blurVariants,
-  blurTransition,
-} from "@/components/react/motion-primitives/View";
+import { View, blurVariants, blurTransition } from "@/components/react/motion-primitives/View";
 import { BlogItem } from "@/components/react/BlogItem";
 import Partialty from "../assets/partialty.svg";
 import { getPosts } from "@/lib/sanity";
@@ -16,50 +12,53 @@ import { getPosts } from "@/lib/sanity";
 const posts = await getPosts();
 ---
 
-<SEO
-  title="Yung Chin Pang, Sam"
-  description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
-  openGraph={{
-    basic: {
-      title: "Yung Chin Pang, Sam",
-      type: "website",
-      image: "https://avatars.githubusercontent.com/u/41984660",
-      url: "https://sam.partialty.com",
-    },
-    optional: {
-      locale: "en_US",
-      siteName: "partialty",
-      description:
-        "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
-    },
-  }}
-/>
 <Layout>
+  <SEO
+    slot="head"
+    title="Yung Chin Pang, Sam"
+    description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+    openGraph={{
+      basic: {
+        title: "Yung Chin Pang, Sam",
+        type: "website",
+        image: "https://avatars.githubusercontent.com/u/41984660",
+        url: "https://sam.partialty.com",
+      },
+      optional: {
+        locale: "en_US",
+        siteName: "partialty",
+        description:
+          "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+      },
+    }}
+  />
   <div class="min-h-screen relative">
     <main class="pt-20 pb-24 px-4">
       <MinimalTypography>
         <!-- profile icon -->
         <View client:load variants={blurVariants} transition={blurTransition}>
           <div class="flex justify-between items-center">
-            <div class="flex items-center">
-              <div>
-                <Image
-                  src={ProfilePic}
-                  alt="Sam Yung"
-                  class="size-16 rounded-full object-cover"
-                  quality="low"
-                />
+            <header>
+              <div class="flex items-center">
+                <div>
+                  <Image
+                    src={ProfilePic}
+                    alt="Sam Yung"
+                    class="size-16 rounded-full object-cover"
+                    quality="low"
+                    loading="eager"
+                  />
+                </div>
+                <div class="ml-4">
+                  <h1>Yung Chin Pang, Sam</h1>
+                  <p>Software Engineer</p>
+                </div>
               </div>
-              <div class="ml-4">
-                <h1>Yung Chin Pang, Sam</h1>
-                <p>Software Engineer</p>
-              </div>
-            </div>
+            </header>
 
             <button class="themeToggle flex items-center">
-              <span
-                class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
-              >
+              <span class="sr-only">Toggle Theme</span>
+              <span class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100">
                 <svg
                   class="stroke-secondary-foregrouund size-5"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,9 +70,8 @@ const posts = await getPosts();
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
-                  ></path><path
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path
                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
                   ></path></svg
                 >
@@ -93,8 +91,7 @@ const posts = await getPosts();
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
                     d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
                   ></path></svg
                 >
@@ -104,48 +101,38 @@ const posts = await getPosts();
         </View>
 
         <!-- bio -->
-        <View
-          client:load
-          variants={blurVariants}
-          transition={{ ...blurTransition, delay: 0.1 }}
-        >
+        <View client:load variants={blurVariants} transition={{ ...blurTransition, delay: 0.1 }}>
           <div class="flex flex-col gap-4">
             <h2 id="aboutme">About me</h2>
             <p>
-              React and Next JS dev since 2020. Intrigued with UI/UX and design
-              theories, strives to create the most pleasing experiences.
+              React and Next JS dev since 2020. Intrigued with UI/UX and design theories, strives to
+              create the most pleasing experiences.
             </p>
           </div>
         </View>
 
         <!-- current status -->
-        <View
-          client:load
-          variants={blurVariants}
-          transition={{ ...blurTransition, delay: 0.3 }}
-        >
+        <View client:load variants={blurVariants} transition={{ ...blurTransition, delay: 0.3 }}>
           <div class="flex flex-col gap-4">
             <h2 id="present">Present</h2>
             <ul>
               <li>
-                Lead developer in Overfitting Co. to develop an AI-powered
-                travel app that creates personalized itineraries according to
-                users' personalities.
+                Lead developer in Overfitting Co. to develop an AI-powered travel app that creates
+                personalized itineraries according to users' personalities.
               </li>
               <li>
-                I craft custom websites for clients in HK, TW and other
-                countries. Prioritizing interactivity, performance, and SEO.
+                I craft custom websites for clients in HK, TW and other countries. Prioritizing
+                interactivity, performance, and SEO.
               </li>
               <li>
                 Working on the E-learning platform <a
                   href="https://www.partialty.com"
                   target="_blank">Partialty</a
-                > as a side project. It provides short and interactive courses to
-                learn web dev with voice overs and auto text highlighting.
+                > as a side project. It provides short and interactive courses to learn web dev with
+                voice overs and auto text highlighting.
               </li>
               <li>
-                Periodically creates tailwind components and templates to share
-                with the community.
+                Periodically creates tailwind components and templates to share with the community.
               </li>
             </ul>
             <div>I am always open to new oppotunities and challenges ;D</div>
@@ -153,76 +140,65 @@ const posts = await getPosts();
         </View>
 
         <!-- blog -->
-        <View
-          client:load
-          variants={blurVariants}
-          transition={{ ...blurTransition, delay: 0.5 }}
-        >
+        <View client:load variants={blurVariants} transition={{ ...blurTransition, delay: 0.5 }}>
           <div class="flex flex-col gap-4">
             <h2 id="blog">Blog</h2>
             <BlogItem posts={posts} />
             <a href="/blog">
-              <small> See More </small>
+              <span class="sr-only">Navigate to blog posts</span>
+              <small>See More</small>
             </a>
           </div>
         </View>
 
         <!-- links -->
-        <View
-          client:load
-          variants={blurVariants}
-          transition={{ ...blurTransition, delay: 0.5 }}
-        >
-          <ul class="not-prose flex gap-4 items-center justify-center">
-            <li
-              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
-            >
-              <a
-                href="https://discordapp.com/users/412577910877323264"
-                target="_blank"
-              >
-                <svg
-                  class="size-5 fill-secondary-foreground"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                    d="M14.983 3l.123 .006c2.014 .214 3.527 .672 4.966 1.673a1 1 0 0 1 .371 .488c1.876 5.315 2.373 9.987 1.451 12.28c-1.003 2.005 -2.606 3.553 -4.394 3.553c-.732 0 -1.693 -.968 -2.328 -2.045a21.512 21.512 0 0 0 2.103 -.493a1 1 0 1 0 -.55 -1.924c-3.32 .95 -6.13 .95 -9.45 0a1 1 0 0 0 -.55 1.924c.717 .204 1.416 .37 2.103 .494c-.635 1.075 -1.596 2.044 -2.328 2.044c-1.788 0 -3.391 -1.548 -4.428 -3.629c-.888 -2.217 -.39 -6.89 1.485 -12.204a1 1 0 0 1 .371 -.488c1.439 -1.001 2.952 -1.459 4.966 -1.673a1 1 0 0 1 .935 .435l.063 .107l.651 1.285l.137 -.016a12.97 12.97 0 0 1 2.643 0l.134 .016l.65 -1.284a1 1 0 0 1 .754 -.54l.122 -.009zm-5.983 7a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15zm6 0a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-            <li
-              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
-            >
-              <a href="mailto://yungchinpang9@gmail.com" target="_blank">
-                <svg
-                  class="size-5 fill-secondary-foreground"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                    d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
-                  ></path><path
-                    d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-            <li
-              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
-            >
-              <a href="https://www.partialty.com" target="_blank">
-                <Image src={Partialty} alt="Partialty" class="size-5" />
-              </a>
-            </li>
-          </ul>
+        <View client:load variants={blurVariants} transition={{ ...blurTransition, delay: 0.5 }}>
+          <nav>
+            <ul class="not-prose flex gap-4 items-center justify-center">
+              <li class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
+                <a href="https://discordapp.com/users/412577910877323264" target="_blank">
+                  <span class="sr-only">Discord Link</span>
+                  <svg
+                    class="size-5 fill-secondary-foreground"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                      d="M14.983 3l.123 .006c2.014 .214 3.527 .672 4.966 1.673a1 1 0 0 1 .371 .488c1.876 5.315 2.373 9.987 1.451 12.28c-1.003 2.005 -2.606 3.553 -4.394 3.553c-.732 0 -1.693 -.968 -2.328 -2.045a21.512 21.512 0 0 0 2.103 -.493a1 1 0 1 0 -.55 -1.924c-3.32 .95 -6.13 .95 -9.45 0a1 1 0 0 0 -.55 1.924c.717 .204 1.416 .37 2.103 .494c-.635 1.075 -1.596 2.044 -2.328 2.044c-1.788 0 -3.391 -1.548 -4.428 -3.629c-.888 -2.217 -.39 -6.89 1.485 -12.204a1 1 0 0 1 .371 -.488c1.439 -1.001 2.952 -1.459 4.966 -1.673a1 1 0 0 1 .935 .435l.063 .107l.651 1.285l.137 -.016a12.97 12.97 0 0 1 2.643 0l.134 .016l.65 -1.284a1 1 0 0 1 .754 -.54l.122 -.009zm-5.983 7a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15zm6 0a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
+                <a href="mailto://yungchinpang9@gmail.com" target="_blank">
+                  <span class="sr-only">Mail Address</span>
+                  <svg
+                    class="size-5 fill-secondary-foreground"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                      d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
+                    ></path><path
+                      d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
+                <a href="https://www.partialty.com" target="_blank">
+                  <span class="sr-only">Partialty Platform</span>
+                  <Image src={Partialty} alt="Partialty" class="size-5 object-contain" />
+                </a>
+              </li>
+            </ul>
+          </nav>
         </View>
       </MinimalTypography>
     </main>

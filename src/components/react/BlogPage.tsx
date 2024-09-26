@@ -27,16 +27,12 @@ const container = {
 
 const BlogItem = ({ post }: { post: Post }) => {
   return (
-    <li key={post._id}>
-      <a href={`/blog/${post.slug}`}>
-        <div className="py-3 px-3 -ml-3 rounded-md hover:bg-muted transition-all duration-300 ease-in-out flex justify-between">
-          <h2 className="text-secondary-foreground">{post.name}</h2>
-          <time className="text-sm text-seconday">
-            {dayjs(post._createdAt).format("DD/MM/YYYY")}
-          </time>
-        </div>
-      </a>
-    </li>
+    <a className="block" href={`/blog/${post.slug}`}>
+      <div className="py-3 px-3 -ml-3 rounded-md hover:bg-muted transition-all duration-300 ease-in-out flex justify-between">
+        <h2 className="text-secondary-foreground">{post.name}</h2>
+        <time className="text-sm text-seconday">{dayjs(post._createdAt).format("DD/MM/YYYY")}</time>
+      </div>
+    </a>
   );
 };
 
@@ -49,11 +45,7 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
       setFilteredPosts(posts);
       return;
     }
-    setFilteredPosts(
-      posts.filter((post) =>
-        post.tags.some((tag) => selectedTags.includes(tag)),
-      ),
-    );
+    setFilteredPosts(posts.filter((post) => post.tags.some((tag) => selectedTags.includes(tag))));
   }, [selectedTags, posts]);
 
   return (
@@ -64,9 +56,7 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
             <button
               onClick={() =>
                 selectedTags.includes(tag.slug)
-                  ? setSelectedTags(
-                      selectedTags.filter((id) => id !== tag.slug),
-                    )
+                  ? setSelectedTags(selectedTags.filter((id) => id !== tag.slug))
                   : setSelectedTags([...selectedTags, tag.slug])
               }
             >
@@ -74,8 +64,7 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
                 variant="accent"
                 className={cn(
                   "text-secondary-foreground border-border px-1",
-                  selectedTags.includes(tag.slug) &&
-                    "bg-border hover:bg-border",
+                  selectedTags.includes(tag.slug) && "bg-border hover:bg-border"
                 )}
               >
                 {tag.name}
@@ -84,10 +73,10 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
           </li>
         ))}
       </ul>
-      <ul className="not-prose flex flex-col gap-1">
-        <AnimatePresence>
+      <AnimatePresence>
+        <ul className="not-prose flex flex-col gap-1">
           {filteredPosts.map((post) => (
-            <motion.div
+            <motion.li
               variants={container}
               key={post._id}
               initial="hidden"
@@ -95,10 +84,10 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
               exit="hidden"
             >
               <BlogItem post={post} />
-            </motion.div>
+            </motion.li>
           ))}
-        </AnimatePresence>
-      </ul>
+        </ul>
+      </AnimatePresence>
     </>
   );
 };

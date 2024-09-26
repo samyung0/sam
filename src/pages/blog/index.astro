@@ -10,25 +10,26 @@ const posts = await getPosts();
 const tags = await getTags();
 ---
 
-<SEO
-  title="Yung Chin Pang, Sam"
-  description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
-  openGraph={{
-    basic: {
-      title: "Yung Chin Pang, Sam",
-      type: "website",
-      url: "https://sam.partialty.com",
-      image: "https://avatars.githubusercontent.com/u/41984660",
-    },
-    optional: {
-      locale: "en_US",
-      siteName: "partialty",
-      description:
-        "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
-    },
-  }}
-/>
 <Layout>
+  <SEO
+    slot="head"
+    title="Yung Chin Pang, Sam"
+    description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+    openGraph={{
+      basic: {
+        title: "Yung Chin Pang, Sam",
+        type: "website",
+        url: "https://sam.partialty.com",
+        image: "https://avatars.githubusercontent.com/u/41984660",
+      },
+      optional: {
+        locale: "en_US",
+        siteName: "partialty",
+        description:
+          "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+      },
+    }}
+  />
   <div class="min-h-screen relative">
     <main class="pt-20 pb-24 px-4">
       <MinimalTypography class="gap-10">
@@ -36,9 +37,8 @@ const tags = await getTags();
           <h1 class="text-2xl font-bold">Blog.</h1>
 
           <button class="themeToggle flex items-center">
-            <span
-              class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
-            >
+            <span class="sr-only">Toggle Theme</span>
+            <span class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100">
               <svg
                 class="stroke-secondary-foregrouund size-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -82,30 +82,31 @@ const tags = await getTags();
         <BlogPage tags={tags} posts={posts} client:visible />
 
         <View client:load transition={{ delay: 0.5 }}>
-          <ul class="not-prose flex gap-4 items-center justify-center">
-            <li
-              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
-            >
-              <a href="/">
-                <svg
-                  class="size-5 stroke-secondary-foreground"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                  ></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path
-                    d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path
-                    d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg
-                >
-              </a>
-            </li>
-          </ul>
+          <nav>
+            <ul class="not-prose flex gap-4 items-center justify-center">
+              <li class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
+                <a href="/">
+                  <span class="sr-only">Retun to homepage</span>
+                  <svg
+                    class="size-5 stroke-secondary-foreground"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                      d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path
+                      d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path
+                      d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg
+                  >
+                </a>
+              </li>
+            </ul>
+          </nav>
         </View>
       </MinimalTypography>
     </main>

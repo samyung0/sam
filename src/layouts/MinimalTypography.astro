@@ -1,6 +1,6 @@
 ---
-import { cn } from '@/lib/utils';
-import Typography from './Typography.astro';
+import { cn } from "@/lib/utils";
+import Typography from "./Typography.astro";
 
 interface Props {
   class?: string;
@@ -9,10 +9,16 @@ interface Props {
 
 const { class: className } = Astro.props;
 ---
-<Typography class={cn(`[&_:where(*):not(:where([class~="not-prose"]_*)):not(div)]:m-0
+
+<Typography
+  class={cn(
+    `[&_:where(*):not(:where([class~="not-prose"]_*)):not(div)]:m-0
       [&_:where(*):not(:where([class~="not-prose"]_*)):not(div)]:text-base
       [&_:where(small):not(:where([class~="not-prose"]_*)):not(div)]:text-xs
       prose-p:text-base
-      flex flex-col justify-center gap-16`, className)}>
+      flex flex-col justify-center gap-16`,
+    className
+  )}
+>
   <slot />
 </Typography>
