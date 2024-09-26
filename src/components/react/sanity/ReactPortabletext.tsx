@@ -172,7 +172,7 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
           internalLink: (props) => {
             if (props.value.type === "author" && props.value.slug === "sam-yung")
               return <a href="/about">{props.children}</a>;
-            return <a href={`/${props.value.type}/${props.value.slug}`}>{props.children}</a>;
+            return <a href={`/blog/${props.value.slug}`}>{props.children}</a>;
           },
           link: (props) => {
             const { blank, href } = props.value;
