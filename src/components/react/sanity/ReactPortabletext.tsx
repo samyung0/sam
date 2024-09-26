@@ -85,7 +85,12 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
             );
           },
           code: (props) => {
-            if (!highlighter || (!!props.value.language && !loadedLangs[props.value.language]))
+            if (
+              !highlighter ||
+              (!!props.value.language &&
+                props.value.language !== "plain" &&
+                !loadedLangs[props.value.language])
+            )
               return (
                 <pre>
                   <code>
