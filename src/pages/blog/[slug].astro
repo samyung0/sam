@@ -40,7 +40,7 @@ const updated = dayjs(post._updatedAt).format("DD-MM-YYYY");
         publishedTime: published,
         modifiedTime: updated,
         authors: ["Yung Chin Pang, Sam"],
-        tags: post.tags.map((tag) => tags.find((t) => t._id === tag)?.slug ?? ""),
+        tags: post.tags.map((tag) => tags.find((t) => t.slug === tag)?.name ?? ""),
       },
     }}
   />
