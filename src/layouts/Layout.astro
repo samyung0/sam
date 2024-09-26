@@ -1,41 +1,48 @@
 ---
-import '@/styles/global.css'
-import { ViewTransitions } from 'astro:transitions'
+import "@/styles/global.css";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<script>
-      const isDark = localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  <head>
+    <script is:inline>
+      const isDark =
+        localStorage.getItem("theme") === "dark" ||
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
       if (isDark) {
-        document.documentElement.classList.add('dark');
-				window.localStorage.setItem('theme', "dark");
+        document.documentElement.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
       } else {
-        document.documentElement.classList.remove('dark');
-				window.localStorage.setItem('theme', "light");
+        document.documentElement.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
       }
 
-      Array.from(document.getElementsByClassName("themeToggle")).forEach(toggle => {
-        (toggle.getElementsByClassName("themeToggleSun")[0] as HTMLElement).style.display = isDark ? "inline-block" : "none";
-        (toggle.getElementsByClassName("themeToggleMoon")[0] as HTMLElement).style.display = isDark ? "none" : "inline-block";
-      })
-
+      Array.from(document.getElementsByClassName("themeToggle")).forEach(
+        (toggle) => {
+          toggle.getElementsByClassName("themeToggleSun")[0].style.display =
+            isDark ? "inline-block" : "none";
+          toggle.getElementsByClassName("themeToggleMoon")[0].style.display =
+            isDark ? "none" : "inline-block";
+        }
+      );
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
-	</head>
-	<body>
-		<slot />
-	</body>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <script is:inline>
   function handleToggleClick() {
@@ -45,9 +52,21 @@ import { ViewTransitions } from 'astro:transitions'
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
 
-    this.getElementsByClassName("themeToggleSun")[0].style.display = isDark ? "inline-block" : "none";
-    this.getElementsByClassName("themeToggleMoon")[0].style.display = isDark ? "none" : "inline-block";
+    this.getElementsByClassName("themeToggleSun")[0].style.display = isDark
+      ? "inline-block"
+      : "none";
+    this.getElementsByClassName("themeToggleMoon")[0].style.display = isDark
+      ? "none"
+      : "inline-block";
   }
 
-  Array.from(document.getElementsByClassName("themeToggle")).forEach(toggle => toggle.addEventListener("click", handleToggleClick));
+  Array.from(document.getElementsByClassName("themeToggle")).forEach((toggle) =>
+    toggle.addEventListener("click", handleToggleClick)
+  );
+
+  document.addEventListener("astro:after-swap", function () {
+    if (localStorage.getItem("theme") === "dark")
+      document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  });
 </script>
