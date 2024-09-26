@@ -1,50 +1,53 @@
 ---
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
+import '@/styles/global.css'
+import { ViewTransitions } from 'astro:transitions'
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<script>
+      const isDark = localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+				window.localStorage.setItem('theme', "dark");
+      } else {
+        document.documentElement.classList.remove('dark');
+				window.localStorage.setItem('theme', "light");
+      }
+
+      Array.from(document.getElementsByClassName("themeToggle")).forEach(toggle => {
+        (toggle.getElementsByClassName("themeToggleSun")[0] as HTMLElement).style.display = isDark ? "inline-block" : "none";
+        (toggle.getElementsByClassName("themeToggleMoon")[0] as HTMLElement).style.display = isDark ? "none" : "inline-block";
+      })
+
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+    <ViewTransitions />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
+<script is:inline>
+  function handleToggleClick() {
+    const element = document.documentElement;
+    element.classList.toggle("dark");
+
+    const isDark = element.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    this.getElementsByClassName("themeToggleSun")[0].style.display = isDark ? "inline-block" : "none";
+    this.getElementsByClassName("themeToggleMoon")[0].style.display = isDark ? "none" : "inline-block";
+  }
+
+  Array.from(document.getElementsByClassName("themeToggle")).forEach(toggle => toggle.addEventListener("click", handleToggleClick));
+</script>

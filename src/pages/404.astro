@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { SEO } from "astro-seo";
+---
+
+<SEO
+  title="404 Not Found"
+  description="Ooops. It seems like you are being too adventurous. The page you are looking for doesn't exist."
+  openGraph={{
+    basic: {
+      title: "404 Not Found",
+      type: "website",
+      image: "https://avatars.githubusercontent.com/u/41984660",
+      url: "https://sam.partialty.com",
+    },
+    optional: {
+      locale: "en_US",
+      siteName: "partialty",
+      description:
+        "Ooops. It seems like you are being too adventurous. The page you are looking for doesn't exist.",
+    },
+  }}
+/>
+<Layout>
+  <main
+    class="min-h-screen w-screen flex items-center justify-center flex-col gap-5"
+  >
+    <h1 class="flex items-center">
+      <span class="text-xl pr-8 border-r border-border leading-10">404</span>
+      <span class="pl-8 text-base text-secondary-foreground">Page not found.</span>
+    </h1>
+    <p>You have entered enemy territory. Return to safety immediately!</p>
+  </main>
+</Layout>

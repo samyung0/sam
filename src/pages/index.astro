@@ -1,123 +1,239 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import MinimalTypography from "@/layouts/MinimalTypography.astro";
+import Layout from "../layouts/Layout.astro";
+import { SEO } from "astro-seo";
+import ProfilePic from "../assets/profile.jpg";
+import { Image } from "astro:assets";
+import {
+  View,
+  blurVariants,
+  blurTransition,
+} from "@/components/react/motion-primitives/View";
+import { BlogItem } from "@/components/react/BlogItem";
+import Partialty from "../assets/partialty.svg";
+import { getPosts } from "@/lib/sanity";
+
+const posts = await getPosts();
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<svg
-			class="astro-a"
-			width="495"
-			height="623"
-			viewBox="0 0 495 623"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-hidden="true"
-		>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M167.19 364.254C83.4786 364.254 0 404.819 0 404.819C0 404.819 141.781 19.4876 142.087 18.7291C146.434 7.33701 153.027 0 162.289 0H332.441C341.703 0 348.574 7.33701 352.643 18.7291C352.92 19.5022 494.716 404.819 494.716 404.819C494.716 404.819 426.67 364.254 327.525 364.254L264.41 169.408C262.047 159.985 255.147 153.581 247.358 153.581C239.569 153.581 232.669 159.985 230.306 169.408L167.19 364.254ZM160.869 530.172C160.877 530.18 160.885 530.187 160.894 530.195L160.867 530.181C160.868 530.178 160.868 530.175 160.869 530.172ZM136.218 411.348C124.476 450.467 132.698 504.458 160.869 530.172C160.997 529.696 161.125 529.242 161.248 528.804C161.502 527.907 161.737 527.073 161.917 526.233C165.446 509.895 178.754 499.52 195.577 500.01C211.969 500.487 220.67 508.765 223.202 527.254C224.141 534.12 224.23 541.131 224.319 548.105C224.328 548.834 224.337 549.563 224.347 550.291C224.563 566.098 228.657 580.707 237.264 593.914C245.413 606.426 256.108 615.943 270.749 622.478C270.593 621.952 270.463 621.508 270.35 621.126C270.045 620.086 269.872 619.499 269.685 618.911C258.909 585.935 266.668 563.266 295.344 543.933C298.254 541.971 301.187 540.041 304.12 538.112C310.591 533.854 317.059 529.599 323.279 525.007C345.88 508.329 360.09 486.327 363.431 457.844C364.805 446.148 363.781 434.657 359.848 423.275C358.176 424.287 356.587 425.295 355.042 426.275C351.744 428.366 348.647 430.33 345.382 431.934C303.466 452.507 259.152 455.053 214.03 448.245C184.802 443.834 156.584 436.019 136.218 411.348Z"
-				fill="url(#paint0_linear_1805_24383)"></path>
-			<defs>
-				<linearGradient
-					id="paint0_linear_1805_24383"
-					x1="247.358"
-					y1="0"
-					x2="247.358"
-					y2="622.479"
-					gradientUnits="userSpaceOnUse"
-				>
-					<stop stop-opacity="0.9"></stop>
-					<stop offset="1" stop-opacity="0.2"></stop>
-				</linearGradient>
-			</defs>
-		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
+<SEO
+  title="Yung Chin Pang, Sam"
+  description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+  openGraph={{
+    basic: {
+      title: "Yung Chin Pang, Sam",
+      type: "website",
+      image: "https://avatars.githubusercontent.com/u/41984660",
+      url: "https://sam.partialty.com",
+    },
+    optional: {
+      locale: "en_US",
+      siteName: "partialty",
+      description:
+        "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+    },
+  }}
+/>
+<Layout>
+  <div class="w-screen min-h-screen relative">
+    <main class="pt-20 pb-24 px-4">
+      <MinimalTypography>
+        <!-- profile icon -->
+        <View client:load variants={blurVariants} transition={blurTransition}>
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <div>
+                <Image
+                  src={ProfilePic}
+                  alt="Sam Yung"
+                  class="size-16 rounded-full object-cover"
+                  quality="low"
+                />
+              </div>
+              <div class="ml-4">
+                <h1>Yung Chin Pang, Sam</h1>
+                <p>Software Engineer</p>
+              </div>
+            </div>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
+            <button class="themeToggle flex items-center">
+              <span
+                class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
+              >
+                <svg
+                  class="stroke-secondary-foregrouund size-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"
+                  ></path><path
+                    d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+                  ></path></svg
+                >
+              </span>
+              <span
+                style="display:none;"
+                class="themeToggleMoon opacity-70 transition-all duration-300 hover:opacity-100"
+              >
+                <svg
+                  class="stroke-secondary-foreground size-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  ></path><path
+                    d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+                  ></path></svg
+                >
+              </span>
+            </button>
+          </div>
+        </View>
+
+        <!-- bio -->
+        <View
+          client:load
+          variants={blurVariants}
+          transition={{ ...blurTransition, delay: 0.1 }}
+        >
+          <div class="flex flex-col gap-4">
+            <h2 id="aboutme">About me</h2>
+            <p>
+              React and Next JS dev since 2020. Intrigued with UI/UX and design
+              theories, strives to create the most pleasing experiences.
+            </p>
+          </div>
+        </View>
+
+        <!-- current status -->
+        <View
+          client:load
+          variants={blurVariants}
+          transition={{ ...blurTransition, delay: 0.3 }}
+        >
+          <div class="flex flex-col gap-4">
+            <h2 id="present">Present</h2>
+            <ul>
+              <li>
+                Lead developer in Overfitting Co. to develop an AI-powered
+                travel app that creates personalized itineraries according to
+                users' personalities.
+              </li>
+              <li>
+                I craft custom websites for clients in HK, TW and other
+                countries. Prioritizing interactivity, performance, and SEO.
+              </li>
+              <li>
+                Working on the E-learning platform <a
+                  href="https://www.partialty.com"
+                  target="_blank">Partialty</a
+                > as a side project. It provides short and interactive courses to
+                learn web dev with voice overs and auto text highlighting.
+              </li>
+              <li>
+                Periodically creates tailwind components and templates to share
+                with the community.
+              </li>
+            </ul>
+            <div>I am always open to new oppotunities and challenges ;D</div>
+          </div>
+        </View>
+
+        <!-- blog -->
+        <View
+          client:load
+          variants={blurVariants}
+          transition={{ ...blurTransition, delay: 0.5 }}
+        >
+          <div class="flex flex-col gap-4">
+            <h2 id="blog">Blog</h2>
+            <BlogItem posts={posts} />
+            <a href="/blog">
+              <small> See More </small>
+            </a>
+          </div>
+        </View>
+
+        <!-- links -->
+        <View
+          client:load
+          variants={blurVariants}
+          transition={{ ...blurTransition, delay: 0.5 }}
+        >
+          <ul class="not-prose flex gap-4 items-center justify-center">
+            <li
+              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+            >
+              <a
+                href="https://discordapp.com/users/412577910877323264"
+                target="_blank"
+              >
+                <svg
+                  class="size-5 fill-secondary-foreground"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M14.983 3l.123 .006c2.014 .214 3.527 .672 4.966 1.673a1 1 0 0 1 .371 .488c1.876 5.315 2.373 9.987 1.451 12.28c-1.003 2.005 -2.606 3.553 -4.394 3.553c-.732 0 -1.693 -.968 -2.328 -2.045a21.512 21.512 0 0 0 2.103 -.493a1 1 0 1 0 -.55 -1.924c-3.32 .95 -6.13 .95 -9.45 0a1 1 0 0 0 -.55 1.924c.717 .204 1.416 .37 2.103 .494c-.635 1.075 -1.596 2.044 -2.328 2.044c-1.788 0 -3.391 -1.548 -4.428 -3.629c-.888 -2.217 -.39 -6.89 1.485 -12.204a1 1 0 0 1 .371 -.488c1.439 -1.001 2.952 -1.459 4.966 -1.673a1 1 0 0 1 .935 .435l.063 .107l.651 1.285l.137 -.016a12.97 12.97 0 0 1 2.643 0l.134 .016l.65 -1.284a1 1 0 0 1 .754 -.54l.122 -.009zm-5.983 7a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15zm6 0a2 2 0 0 0 -1.977 1.697l-.018 .154l-.005 .149l.005 .15a2 2 0 1 0 1.995 -2.15z"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+            >
+              <a href="mailto://yungchinpang9@gmail.com" target="_blank">
+                <svg
+                  class="size-5 fill-secondary-foreground"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M22 7.535v9.465a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-9.465l9.445 6.297l.116 .066a1 1 0 0 0 .878 0l.116 -.066l9.445 -6.297z"
+                  ></path><path
+                    d="M19 4c1.08 0 2.027 .57 2.555 1.427l-9.555 6.37l-9.555 -6.37a2.999 2.999 0 0 1 2.354 -1.42l.201 -.007h14z"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+            <li
+              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+            >
+              <a href="https://www.partialty.com" target="_blank">
+                <Image src={Partialty} alt="Partialty" class="size-5" />
+              </a>
+            </li>
+          </ul>
+        </View>
+      </MinimalTypography>
+    </main>
+
+    <!-- floating bottom bar -->
+    <!-- <section class="fixed bottom-0 inset-x-0 z-20 h-12 mb-4 px-6 flex items-stretch justify-center">
+        <div class="rounded-xl flex items-center px-2.5 gap-2.5 shadow-[rgba(142,140,152,0.2)_0px_0px_30px,rgba(219,216,224,0.2)_0px_0px_0px_1px] dark:shadow-[rgba(111,109,120,0.1)_0px_0px_30px,rgba(60,57,63,0.4)_0px_0px_0px_1px]">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /></svg>
+          </button>
+        </div>
+     </section> -->
+  </div>
+</Layout>

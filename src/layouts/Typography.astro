@@ -1,0 +1,21 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+  children?: any;
+}
+
+const { class: className } = Astro.props;
+---
+<section class={cn(`prose
+ lg:prose mx-auto dark:prose-invert
+ prose-h1:text-xl prose-h2:text-lg prose-h3:text-lg prose-h4:text-lg
+ prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium
+ [&_:where(*):not(h1,h2,h3,h4):not(:where([class~="not-prose"]_*)):not(div)]:font-normal
+[&_:where(*):not(h1,h2,h3,h4):not(:where([class~="not-prose"]_*)):not(div)]:text-secondary-foreground
+prose-pre:text-xs prose-pre:leading-5 lg:prose-pre:w-[85%] prose-pre:mx-auto prose-pre:shadow-2xl
+prose-img:m-0 prose-figcaption:text-xs
+ prose-ul:space-y-1 prose-ol:space-y-1`, className)}>
+  <slot />
+</section>
