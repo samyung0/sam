@@ -121,18 +121,14 @@ const tags = await getTags();
   import { cookies } from "@/lib/documentCookie";
   import { prefetch } from "astro:prefetch";
 
-  const f = () => {
-    const cookieLocale = cookies.get("lang");
-    const homepageUrl =
-      cookieLocale && cookieLocale !== "en" ? `/${cookieLocale}` : "/";
-    const homepageEl = document.getElementById(
-      "homePageLink"
-    ) as HTMLAnchorElement;
-    if (homepageEl) {
-      homepageEl.href = homepageUrl;
-      prefetch(homepageUrl);
-    }
-  };
-  f();
-  document.addEventListener("astro:after-swap", f);
+  const cookieLocale = cookies.get("lang");
+  const homepageUrl =
+    cookieLocale && cookieLocale !== "en" ? `/${cookieLocale}` : "/";
+  const homepageEl = document.getElementById(
+    "homePageLink"
+  ) as HTMLAnchorElement;
+  if (homepageEl) {
+    homepageEl.href = homepageUrl;
+    prefetch(homepageUrl);
+  }
 </script>
