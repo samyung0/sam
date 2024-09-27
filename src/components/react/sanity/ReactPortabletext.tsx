@@ -10,33 +10,35 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
 
   useEffect(() => {
     (async () => {
-      const engine = (
-        await import("shiki/dist/engine-javascript.d.mts")
-      ).createJavaScriptRegexEngine();
-      const shiki = await import("shiki");
-      setHighlighter(
-        await shiki.createHighlighter({
-          langs: [import("shiki/langs/tsx.mjs")],
-          langAlias: {
-            typescript: "tsx",
-            javascript: "tsx",
-            js: "tsx",
-            ts: "tsx",
-          },
-          themes: [import("shiki/themes/catppuccin-mocha.mjs")],
-          engine: engine,
-        })
-      );
-      setLoadedLangs({
-        ...loadedLangs,
-        tsx: true,
-        typescript: true,
-        js: true,
-        javascript: true,
-        text: true,
-        txt: true,
-        plain: true,
-      });
+      setTimeout(async () => {
+        const engine = (
+          await import("shiki/dist/engine-javascript.d.mts")
+        ).createJavaScriptRegexEngine();
+        const shiki = await import("shiki");
+        setHighlighter(
+          await shiki.createHighlighter({
+            langs: [import("shiki/langs/tsx.mjs")],
+            langAlias: {
+              typescript: "tsx",
+              javascript: "tsx",
+              js: "tsx",
+              ts: "tsx",
+            },
+            themes: [import("shiki/themes/catppuccin-mocha.mjs")],
+            engine: engine,
+          })
+        );
+        setLoadedLangs({
+          ...loadedLangs,
+          tsx: true,
+          typescript: true,
+          js: true,
+          javascript: true,
+          text: true,
+          txt: true,
+          plain: true,
+        });
+      }, 1500);
     })();
   }, []);
 
@@ -124,7 +126,8 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
               (!!props.value.language && !loadedLangs[props.value.language])
             ) {
               if (highlighter) {
-                highlighter.loadLanguage(props.value.language)
+                highlighter
+                  .loadLanguage(props.value.language)
                   .then(() => {
                     setLoadedLangs({
                       ...loadedLangs,
