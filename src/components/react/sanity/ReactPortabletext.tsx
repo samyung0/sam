@@ -1,4 +1,4 @@
-import { PortableText, defaultComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import type { Post } from "@/lib/sanity";
 import type * as shikiType from "shiki";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -49,16 +49,17 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
           },
         },
         block: (props) => {
-          const HeadingTag = props.value.style! as any;
+          const Tag = props.value.style! as any;
 
-          if (/^h\d/.test(HeadingTag)) {
+          if (/^h\d/.test(Tag)) {
             return (
-              <HeadingTag id={props.value.children[0].text}>
-                {props.children}
-              </HeadingTag>
+              <Tag id={props.value.children[0].text}>{props.children}</Tag>
             );
           }
-          return (defaultComponents.block as any)[HeadingTag](props);
+
+          if (Tag === "blockquote")
+            return <blockquote>{props.children}</blockquote>;
+          return <p>{props.children}</p>;
         },
         types: {
           inlineImage: (props) => {
