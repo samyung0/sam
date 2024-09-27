@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
   motion,
   useInView,
@@ -7,6 +6,7 @@ import {
   type Transition,
   type UseInViewOptions,
 } from "framer-motion";
+import { useRef } from "react";
 
 interface InViewProps {
   children: React.ReactNode;
@@ -47,7 +47,7 @@ export function InView({
   transition = defaultTransition,
   viewOptions = defaultOption,
 }: InViewProps) {
-  const ref = React.useRef(null);
+  const ref = useRef(null);
   const isInView = useInView(ref, viewOptions);
 
   return (

@@ -1,17 +1,18 @@
 import { PortableText, defaultComponents } from "@portabletext/react";
 import type { Post } from "@/lib/sanity";
-import * as shiki from "shiki";
-import React from "react";
+import type * as shikiType from "shiki";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useState, useEffect } from "react";
 
 const ReactPortabletext = ({ post }: { post: Post }) => {
-  const [highlighter, setHighlighter] = React.useState<shiki.HighlighterCore>();
-  const [loadedLangs, setLoadedLangs] = React.useState<Record<string, boolean>>(
-    {}
-  );
+  const [shiki, setShiki] = useState<typeof shikiType>();
+  const [highlighter, setHighlighter] = useState<shikiType.HighlighterCore>();
+  const [loadedLangs, setLoadedLangs] = useState<Record<string, boolean>>({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
+      const shiki = await import("shiki");
+      setShiki(shiki);
       setHighlighter(
         await shiki.createHighlighterCore({
           langs: [import("shiki/langs/tsx.mjs")],
@@ -120,17 +121,12 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
               !highlighter ||
               (!!props.value.language && !loadedLangs[props.value.language])
             ) {
-              if (
-                highlighter &&
-                Object.keys(shiki.bundledLanguages).includes(
-                  props.value.language
-                )
-              ) {
+              if (highlighter && shiki) {
                 highlighter
                   .loadLanguage(
                     shiki.bundledLanguages[
-                      props.value.language as shiki.BundledLanguage
-                    ]!
+                      props.value.language as shikiType.BundledLanguage
+                    ]
                   )
                   .then(() => {
                     console.log("loaded", props.value.language);

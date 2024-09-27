@@ -1,12 +1,19 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, type Transition, motion } from "framer-motion";
-import React from "react";
+import {
+  type ReactElement,
+  useState,
+  useId,
+  useEffect,
+  Children,
+  cloneElement,
+} from "react";
 
 type AnimatedBackgroundProps = {
   children:
-    | React.ReactElement<{ "data-id": string }>[]
-    | React.ReactElement<{ "data-id": string }>;
+    | ReactElement<{ "data-id": string }>[]
+    | ReactElement<{ "data-id": string }>;
   defaultValue?: string;
   onValueChange?: (newActiveId: string | null) => void;
   className?: string;
@@ -22,8 +29,8 @@ export default function AnimatedBackground({
   transition,
   enableHover = false,
 }: AnimatedBackgroundProps) {
-  const [activeId, setActiveId] = React.useState<string | null>(null);
-  const uniqueId = React.useId();
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const uniqueId = useId();
 
   const handleSetActiveId = (id: string | null) => {
     setActiveId(id);
@@ -33,13 +40,13 @@ export default function AnimatedBackground({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (defaultValue !== undefined) {
       setActiveId(defaultValue);
     }
   }, [defaultValue]);
 
-  return React.Children.map(children, (child: any, index) => {
+  return Children.map(children, (child: any, index) => {
     const id = child.props["data-id"];
 
     const interactionProps = enableHover
@@ -51,7 +58,7 @@ export default function AnimatedBackground({
           onClick: () => handleSetActiveId(id),
         };
 
-    return React.cloneElement(
+    return cloneElement(
       child,
       {
         key: index,
@@ -78,7 +85,7 @@ export default function AnimatedBackground({
           )}
         </AnimatePresence>
         <span className="z-10">{child.props.children}</span>
-      </>,
+      </>
     );
   });
 }

@@ -1,9 +1,9 @@
 import type { Post, Tag } from "@/lib/sanity";
 import { Badge } from "../ui/badge";
 import dayjs from "dayjs";
-import React from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, cubicBezier, motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const container = {
   hidden: {
@@ -30,22 +30,28 @@ const BlogItem = ({ post }: { post: Post }) => {
     <a className="block" href={`/blog/${post.slug}`}>
       <div className="py-3 px-3 -ml-3 rounded-md hover:bg-muted transition-all duration-300 ease-in-out flex justify-between">
         <h2 className="text-secondary-foreground">{post.name}</h2>
-        <time className="text-sm text-seconday">{dayjs(post._createdAt).format("DD/MM/YYYY")}</time>
+        <time className="text-sm text-seconday">
+          {dayjs(post._createdAt).format("DD/MM/YYYY")}
+        </time>
       </div>
     </a>
   );
 };
 
 const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
-  const [filteredPosts, setFilteredPosts] = React.useState(posts);
-  const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedTags.length === 0) {
       setFilteredPosts(posts);
       return;
     }
-    setFilteredPosts(posts.filter((post) => post.tags.some((tag) => selectedTags.includes(tag))));
+    setFilteredPosts(
+      posts.filter((post) =>
+        post.tags.some((tag) => selectedTags.includes(tag))
+      )
+    );
   }, [selectedTags, posts]);
 
   return (
@@ -56,7 +62,9 @@ const BlogPage = ({ posts, tags }: { posts: Post[]; tags: Tag[] }) => {
             <button
               onClick={() =>
                 selectedTags.includes(tag.slug)
-                  ? setSelectedTags(selectedTags.filter((id) => id !== tag.slug))
+                  ? setSelectedTags(
+                      selectedTags.filter((id) => id !== tag.slug)
+                    )
                   : setSelectedTags([...selectedTags, tag.slug])
               }
             >
