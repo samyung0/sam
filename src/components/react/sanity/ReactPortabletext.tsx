@@ -13,9 +13,9 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
       const engine = (
         await import("shiki/dist/engine-javascript.d.mts")
       ).createJavaScriptRegexEngine();
-      const shiki = await import("shiki/dist/core.d.mts");
+      const shiki = await import("shiki");
       setHighlighter(
-        await shiki.createHighlighterCore({
+        await shiki.createHighlighter({
           langs: [import("shiki/langs/tsx.mjs")],
           langAlias: {
             typescript: "tsx",
@@ -124,11 +124,7 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
               (!!props.value.language && !loadedLangs[props.value.language])
             ) {
               if (highlighter) {
-                // yea dont do this in prod, just load the web bundle
-                // this is for maximizing lighthouse score
-                import(
-                  `../../../../node_modules/shiki/dist/langs/${props.value.language}.mjs`
-                )
+                highlighter.loadLanguage(props.value.language)
                   .then(() => {
                     setLoadedLangs({
                       ...loadedLangs,

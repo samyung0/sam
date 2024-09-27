@@ -81,7 +81,7 @@ const tags = await getTags();
           </button>
         </div>
 
-        <BlogPage tags={tags} posts={posts} client:visible />
+        <BlogPage tags={tags} posts={posts} client:load />
 
         <View client:load transition={{ delay: 0.5 }}>
           <nav>
