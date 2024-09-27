@@ -290,7 +290,7 @@ export const prerender = false;
 <script
   is:inline
   type="application/ld+json"
-  set:text={JSON.stringify(indexSchemaMarkup)}
+  set:html={JSON.stringify(indexSchemaMarkup)}
 />
 <script>
   import { cookies } from "@/lib/documentCookie";
