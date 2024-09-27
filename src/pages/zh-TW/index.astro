@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/noto-sans-tc';
+import "@fontsource-variable/noto-sans-tc";
 import MinimalTypography from "@/layouts/MinimalTypography.astro";
 import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
@@ -110,7 +110,7 @@ export const prerender = false;
                   >
                 </span>
               </button>
-              <button id="localToggle" class="flex items-center">
+              <button role="link" id="localToggle" class="flex items-center">
                 <span class="sr-only">更換語言</span>
                 <span
                   class="opacity-70 transition-all duration-300 hover:opacity-100 translate-y-[1px]"
@@ -273,16 +273,12 @@ export const prerender = false;
 </Layout>
 <script>
   import { cookies } from "@/lib/documentCookie";
-  import { navigate } from "astro:transitions/client";
-
-  let f = () => {
-    const localToggle = document.getElementById("localToggle");
-    localToggle?.addEventListener("click", () => {
-      const nextLocale = "en";
-      cookies.set("lang", nextLocale);
-      navigate(`/`);
-    });
-  };
-  f();
-  document.addEventListener("astro:after-swap", f);
+  import { prefetch } from "astro:prefetch";
+  const nextLocale = "en";
+  prefetch("/");
+  const localToggle = document.getElementById("localToggle");
+  localToggle?.addEventListener("click", () => {
+    cookies.set("lang", nextLocale);
+    window.location.assign("/");
+  });
 </script>

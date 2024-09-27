@@ -110,7 +110,7 @@ export const prerender = false;
                   >
                 </span>
               </button>
-              <button id="localToggle" class="flex items-center">
+              <button role="link" id="localToggle" class="flex items-center">
                 <span class="sr-only">言語を切り替える</span>
                 <span
                   class="opacity-70 transition-all duration-300 hover:opacity-100 translate-y-[1px]"
@@ -272,16 +272,12 @@ export const prerender = false;
 </Layout>
 <script>
   import { cookies } from "@/lib/documentCookie";
-  import { navigate } from "astro:transitions/client";
-
-  let f = () => {
-    const localToggle = document.getElementById("localToggle");
-    localToggle?.addEventListener("click", () => {
-      const nextLocale = "zh-TW";
-      cookies.set("lang", nextLocale);
-      navigate(`/${nextLocale}/`);
-    });
-  };
-  f();
-  document.addEventListener("astro:after-swap", f);
+  import { prefetch } from "astro:prefetch";
+  const nextLocale = "zh-TW";
+  prefetch(`/${nextLocale}/`);
+  const localToggle = document.getElementById("localToggle");
+  localToggle?.addEventListener("click", () => {
+    cookies.set("lang", nextLocale);
+    window.location.assign(`/${nextLocale}/`);
+  });
 </script>
