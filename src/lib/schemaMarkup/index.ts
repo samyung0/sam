@@ -50,6 +50,7 @@ const indexSchemaMarkup: Graph = {
     {
       "@type": "Occupation",
       "@id": "https://sam.partialty.com/#occupation",
+      mainEntityOfPage: { "@id": "https://sam.partialty.com/#website" },
       educationRequirements: {
         "@type": "EducationalOccupationalCredential",
         credentialCategory: "Bachelor's degree",
@@ -57,8 +58,10 @@ const indexSchemaMarkup: Graph = {
       },
       experienceRequirements: "Expertise in mobile app development",
       occupationalCategory: "Software Development",
-      occupationLocation: "Hong Kong",
-      estimatedSalary: 5000,
+      occupationLocation: {
+        "@type": "AdministrativeArea",
+        address: "Hong Kong"
+      },
       name: "Software Engineer",
       description: "Software Engineer at Partialty",
       qualifications: "Bachelor's degree in Computer Science",
