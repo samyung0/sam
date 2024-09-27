@@ -17,7 +17,8 @@ const indexSchemaMarkup: Graph = {
       gender: "Male",
       alumniOf: { "@id": "https://sam.partialty.com/#alumni" },
       affiliation: { "@id": "https://sam.partialty.com/#organization" },
-      image: { "@id": "https://sam.partialty.com/#logo" },
+      image:
+        "https://sam.partialty.com/_image?href=%2F_astro%2Fprofile.Cs45b1KG.jpg&q=low&f=webp",
       hasOccupation: { "@id": "https://sam.partialty.com/#occupation" },
       subjectOf: { "@id": "https://sam.partialty.com/#website" },
       mainEntityOfPage: { "@id": "https://sam.partialty.com/" },
@@ -34,6 +35,39 @@ const indexSchemaMarkup: Graph = {
       logo: "https://sam.partialty.com/_image?href=%2F_astro%2Fpartialty.DtNZG1tt.svg&f=svg",
       name: "Partialty",
       url: "https://partialty.com/",
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://sam.partialty.com/#alumni",
+      name: "The University of Hong Kong",
+      alumni: { "@id": "https://sam.partialty.com/#sam" },
+      url: "https://hku.hk/",
+      location: "Pokfulam, Hong Kong",
+      address: "The University of Hong Kong, Pokfulam, Hong Kong",
+      telephone: "+852 2859 2111",
+      faxNumber: "+852 2858 2549",
+    },
+    {
+      "@type": "Occupation",
+      "@id": "https://sam.partialty.com/#occupation",
+      educationRequirements: {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "Bachelor's degree",
+        educationalLevel: "Advanced",
+      },
+      experienceRequirements: "Expertise in mobile app development",
+      occupationalCategory: "Software Development",
+      occupationLocation: "Hong Kong",
+      estimatedSalary: 5000,
+      name: "Software Engineer",
+      description: "Software Engineer at Partialty",
+      qualifications: "Bachelor's degree in Computer Science",
+      skills:
+        "Typescript, React Native, Mobile App Development, Web Development, Front-end Development, Fullstack Development, Tailwind CSS, Firebase, Backend",
+      responsibilities:
+        "Lead developer to make a realtime AI travel app that recommends travel destinations based on user's personalities. Structure the app with React Native, React Query, Zustand, Firebase, and Tailwind CSS. Perform code review and mentor junior developers. Carry out testing.",
+      image:
+        "https://sam.partialty.com/_image?href=%2F_astro%2Fsoftware-engineer.Cs45b1KG.jpg&q=low&f=webp",
     },
     {
       "@type": "AboutPage",
