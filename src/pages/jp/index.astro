@@ -271,7 +271,11 @@ export const prerender = false;
     </main>
   </div>
 </Layout>
-<script is:inline type="application/ld+json" set:text={indexSchemaMarkup} />
+<script
+  is:inline
+  type="application/ld+json"
+  set:text={JSON.stringify(indexSchemaMarkup)}
+/>
 <script>
   import { cookies } from "@/lib/documentCookie";
   import { prefetch } from "astro:prefetch";
