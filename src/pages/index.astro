@@ -12,6 +12,7 @@ import {
 import { BlogItem } from "@/components/react/BlogItem";
 import Partialty from "../assets/partialty.svg";
 import { getPosts } from "@/lib/sanity";
+import { indexSchemaMarkup } from "@/lib/schemaMarkup";
 
 const posts = await getPosts();
 
@@ -286,6 +287,7 @@ export const prerender = false;
      </section> -->
   </div>
 </Layout>
+<script is:inline type="application/ld+json" set:text={indexSchemaMarkup} />
 <script>
   import { cookies } from "@/lib/documentCookie";
   import { prefetch } from "astro:prefetch";
