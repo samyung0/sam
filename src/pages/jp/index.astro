@@ -1,8 +1,9 @@
 ---
+import "@fontsource-variable/noto-sans-jp";
 import MinimalTypography from "@/layouts/MinimalTypography.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
-import ProfilePic from "../assets/profile.jpg";
+import ProfilePic from "@/assets/profile.jpg";
 import { Image } from "astro:assets";
 import {
   View,
@@ -10,7 +11,7 @@ import {
   blurTransition,
 } from "@/components/react/motion-primitives/View";
 import { BlogItem } from "@/components/react/BlogItem";
-import Partialty from "../assets/partialty.svg";
+import Partialty from "@/assets/partialty.svg";
 import { getPosts } from "@/lib/sanity";
 
 const posts = await getPosts();
@@ -22,7 +23,7 @@ export const prerender = false;
   <SEO
     slot="head"
     title="Yung Chin Pang, Sam"
-    description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+    description="サムです。フルスタックエンジニアでフリーランスもしています。UI/UX、クラウドコンピューティング、AIに興味を持っています。"
     openGraph={{
       basic: {
         title: "Yung Chin Pang, Sam",
@@ -31,14 +32,14 @@ export const prerender = false;
         url: "https://sam.partialty.com",
       },
       optional: {
-        locale: "en-US",
+        locale: "jp-JP",
         siteName: "partialty",
         description:
-          "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+          "サムです。フルスタックエンジニアでフリーランスもしています。UI/UX、クラウドコンピューティング、AIに興味を持っています。",
       },
     }}
   />
-  <div class="min-h-screen relative">
+  <div class="min-h-screen relative jp">
     <main class="pt-20 pb-24 px-4">
       <MinimalTypography>
         <!-- profile icon -->
@@ -56,8 +57,8 @@ export const prerender = false;
                   />
                 </div>
                 <div class="ml-4">
-                  <h1>Yung Chin Pang, Sam</h1>
-                  <p>Software Engineer</p>
+                  <h1>サム</h1>
+                  <p>ソフトウェアエンジニア</p>
                 </div>
               </div>
             </header>
@@ -65,7 +66,7 @@ export const prerender = false;
             <!-- theme and lang toggle -->
             <div class="flex items-center gap-2">
               <button class="themeToggle flex items-center">
-                <span class="sr-only">Toggle Theme</span>
+                <span class="sr-only">ダークモードを切り替える</span>
                 <span
                   class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
                 >
@@ -110,7 +111,7 @@ export const prerender = false;
                 </span>
               </button>
               <button id="localToggle" class="flex items-center">
-                <span class="sr-only">Cycle Language</span>
+                <span class="sr-only">言語を切り替える</span>
                 <span
                   class="opacity-70 transition-all duration-300 hover:opacity-100 translate-y-[1px]"
                 >
@@ -145,12 +146,10 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.1 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="aboutme">About me</h2>
+            <h2 id="aboutme">自分について</h2>
             <p>
-              React and Next JS dev since 2020. Intrigued with UI/UX and design
-              theories, strives to create the most pleasing experiences for
-              users. Knowledgable in cloud, serverless and microservices.
-              Supporter of gleam and elixir.
+              ReactとNext.jsを活用しWebサイトを開発。UI/UXとデザイン理論に深い興味を持ち、使い心地の良いWebサイトを作ることに励んでいます。
+              Cloud、Serverless、Microservicesなどに経験があります。GleamとElixirを学び中。
             </p>
           </div>
         </View>
@@ -162,30 +161,24 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.3 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="present">Present</h2>
+            <h2 id="present">現在</h2>
             <ul>
               <li>
-                Lead developer in Overfitting Co. to develop an AI-powered
-                travel app that creates personalized itineraries according to
-                users' personalities.
+                リードエンジニアとしてOverfitting
+                Co.でAI旅行アプリを開発中。アプリはユーザーの好みや趣味に合わせて旅行プランを作成する。
               </li>
               <li>
-                I craft custom websites for clients in HK, TW and other
-                countries. Prioritizing interactivity, performance, and SEO.
+                フリーランサーlとしてさまざまなWebサイトを制作。インタラクティブ性、パフォーマンス、SEOを重視。
               </li>
               <li>
-                Working on the E-learning platform <a
+                サイドプロジェクトとしてeラーニングプラットフォーム <a
                   href="https://www.partialty.com"
                   target="_blank">Partialty</a
-                > as a side project. It provides short and interactive courses to
-                learn web dev with voice overs and auto text highlighting.
+                > に取り組んでいます。ボイスオーバーと自動テキストハイライトを備えたわかりやすいコースを提供する。
               </li>
-              <li>
-                Periodically creates tailwind components and templates to share
-                with the community.
-              </li>
+              <li>定期的にtailwindのコンポーネントやテンプレートを作成。</li>
             </ul>
-            <div>I am always open to new oppotunities and challenges ;D</div>
+            <div>どんな挑戦やリクエストでも歓迎です {"• ᴗ <"}</div>
           </div>
         </View>
 
@@ -196,11 +189,11 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.5 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="blog">Blog</h2>
+            <h2 id="blog">ブログ記事(英)</h2>
             <BlogItem posts={posts} />
             <a href="/blog">
-              <span class="sr-only">Navigate to blog posts</span>
-              <small>See More</small>
+              <span class="sr-only">ブログ記事を見る</span>
+              <small>もっと見る</small>
             </a>
           </div>
         </View>
@@ -220,7 +213,7 @@ export const prerender = false;
                   href="https://discordapp.com/users/412577910877323264"
                   target="_blank"
                 >
-                  <span class="sr-only">Discord Link</span>
+                  <span class="sr-only">ディスコード</span>
                   <svg
                     class="size-5 fill-secondary-foreground"
                     xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +233,7 @@ export const prerender = false;
                 class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
               >
                 <a href="mailto://yungchinpang9@gmail.com" target="_blank">
-                  <span class="sr-only">Mail Address</span>
+                  <span class="sr-only">メール</span>
                   <svg
                     class="size-5 fill-secondary-foreground"
                     xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +255,7 @@ export const prerender = false;
                 class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
               >
                 <a href="https://www.partialty.com" target="_blank">
-                  <span class="sr-only">Partialty Platform</span>
+                  <span class="sr-only">Partialtyプラットフォーム</span>
                   <Image
                     src={Partialty}
                     alt="Partialty"
@@ -275,24 +268,16 @@ export const prerender = false;
         </View>
       </MinimalTypography>
     </main>
-
-    <!-- floating bottom bar -->
-    <!-- <section class="fixed bottom-0 inset-x-0 z-20 h-12 mb-4 px-6 flex items-stretch justify-center">
-        <div class="rounded-xl flex items-center px-2.5 gap-2.5 shadow-[rgba(142,140,152,0.2)_0px_0px_30px,rgba(219,216,224,0.2)_0px_0px_0px_1px] dark:shadow-[rgba(111,109,120,0.1)_0px_0px_30px,rgba(60,57,63,0.4)_0px_0px_0px_1px]">
-          <button>
-            <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /></svg>
-          </button>
-        </div>
-     </section> -->
   </div>
 </Layout>
 <script>
   import { cookies } from "@/lib/documentCookie";
   import { navigate } from "astro:transitions/client";
+
   let f = () => {
     const localToggle = document.getElementById("localToggle");
     localToggle?.addEventListener("click", () => {
-      const nextLocale = "jp";
+      const nextLocale = "zh-TW";
       cookies.set("lang", nextLocale);
       navigate(`/${nextLocale}/`);
     });

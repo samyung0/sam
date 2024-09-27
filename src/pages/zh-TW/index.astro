@@ -1,8 +1,8 @@
 ---
 import MinimalTypography from "@/layouts/MinimalTypography.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
-import ProfilePic from "../assets/profile.jpg";
+import ProfilePic from "@/assets/profile.jpg";
 import { Image } from "astro:assets";
 import {
   View,
@@ -10,7 +10,7 @@ import {
   blurTransition,
 } from "@/components/react/motion-primitives/View";
 import { BlogItem } from "@/components/react/BlogItem";
-import Partialty from "../assets/partialty.svg";
+import Partialty from "@/assets/partialty.svg";
 import { getPosts } from "@/lib/sanity";
 
 const posts = await getPosts();
@@ -22,7 +22,7 @@ export const prerender = false;
   <SEO
     slot="head"
     title="Yung Chin Pang, Sam"
-    description="I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI."
+    description="我是Sam。是一位全端工程師和freelancer。致力製作流暢且高性能的網站。對UI/UX、雲端運算和AI有興趣。"
     openGraph={{
       basic: {
         title: "Yung Chin Pang, Sam",
@@ -34,7 +34,7 @@ export const prerender = false;
         locale: "en-US",
         siteName: "partialty",
         description:
-          "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
+          "我是Sam。是一位全端工程師和freelancer。致力製作流暢且高性能的網站。對UI/UX、雲端運算和AI有興趣。",
       },
     }}
   />
@@ -56,8 +56,8 @@ export const prerender = false;
                   />
                 </div>
                 <div class="ml-4">
-                  <h1>Yung Chin Pang, Sam</h1>
-                  <p>Software Engineer</p>
+                  <h1>Yung Chin Pang, Sam ZH</h1>
+                  <p>軟體工程師</p>
                 </div>
               </div>
             </header>
@@ -65,7 +65,7 @@ export const prerender = false;
             <!-- theme and lang toggle -->
             <div class="flex items-center gap-2">
               <button class="themeToggle flex items-center">
-                <span class="sr-only">Toggle Theme</span>
+                <span class="sr-only">更換頁面顏色</span>
                 <span
                   class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
                 >
@@ -110,7 +110,7 @@ export const prerender = false;
                 </span>
               </button>
               <button id="localToggle" class="flex items-center">
-                <span class="sr-only">Cycle Language</span>
+                <span class="sr-only">更換語言</span>
                 <span
                   class="opacity-70 transition-all duration-300 hover:opacity-100 translate-y-[1px]"
                 >
@@ -145,12 +145,11 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.1 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="aboutme">About me</h2>
+            <h2 id="aboutme">關於我</h2>
             <p>
-              React and Next JS dev since 2020. Intrigued with UI/UX and design
-              theories, strives to create the most pleasing experiences for
-              users. Knowledgable in cloud, serverless and microservices.
-              Supporter of gleam and elixir.
+              擅長React和Next
+              JS。對UI/UX和設計理論感興趣，並致力製作體驗感最好的網站。
+              對雲端，serverless和AI有經驗。強烈推薦Gleam和Elixir.
             </p>
           </div>
         </View>
@@ -162,30 +161,24 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.3 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="present">Present</h2>
+            <h2 id="present">現在</h2>
             <ul>
               <li>
-                Lead developer in Overfitting Co. to develop an AI-powered
-                travel app that creates personalized itineraries according to
-                users' personalities.
+                Overfitting
+                Co.的首席開發者。負責開發一個能根據用戶的的性格和興趣創建最合適的行程的AI旅行App。
               </li>
               <li>
-                I craft custom websites for clients in HK, TW and other
-                countries. Prioritizing interactivity, performance, and SEO.
+                為香港，台灣和其他國家的客戶製作定制網站。優先考慮互動性，性能和SEO。
               </li>
               <li>
-                Working on the E-learning platform <a
-                  href="https://www.partialty.com"
-                  target="_blank">Partialty</a
-                > as a side project. It provides short and interactive courses to
-                learn web dev with voice overs and auto text highlighting.
+                創立了<a href="https://www.partialty.com" target="_blank"
+                  >Partialty</a
+                >
+                的電子學習平台。平台提供有配音和自動highlight的互動課程，旨於令學習網頁開發的過程更簡單有趣。
               </li>
-              <li>
-                Periodically creates tailwind components and templates to share
-                with the community.
-              </li>
+              <li>定期創建tailwind組件和模板並分享。</li>
             </ul>
-            <div>I am always open to new oppotunities and challenges ;D</div>
+            <div>歡迎聯絡我，我很樂意接受新的挑戰和機會 ;D</div>
           </div>
         </View>
 
@@ -196,11 +189,11 @@ export const prerender = false;
           transition={{ ...blurTransition, delay: 0.5 }}
         >
           <div class="flex flex-col gap-4">
-            <h2 id="blog">Blog</h2>
+            <h2 id="blog">Blog(英文)</h2>
             <BlogItem posts={posts} />
             <a href="/blog">
-              <span class="sr-only">Navigate to blog posts</span>
-              <small>See More</small>
+              <span class="sr-only">去看Blog</span>
+              <small>更多Blog</small>
             </a>
           </div>
         </View>
@@ -220,7 +213,7 @@ export const prerender = false;
                   href="https://discordapp.com/users/412577910877323264"
                   target="_blank"
                 >
-                  <span class="sr-only">Discord Link</span>
+                  <span class="sr-only">Discord 鏈接</span>
                   <svg
                     class="size-5 fill-secondary-foreground"
                     xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +233,7 @@ export const prerender = false;
                 class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
               >
                 <a href="mailto://yungchinpang9@gmail.com" target="_blank">
-                  <span class="sr-only">Mail Address</span>
+                  <span class="sr-only">電郵地址</span>
                   <svg
                     class="size-5 fill-secondary-foreground"
                     xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +255,7 @@ export const prerender = false;
                 class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
               >
                 <a href="https://www.partialty.com" target="_blank">
-                  <span class="sr-only">Partialty Platform</span>
+                  <span class="sr-only">Partialty 平台</span>
                   <Image
                     src={Partialty}
                     alt="Partialty"
@@ -275,26 +268,18 @@ export const prerender = false;
         </View>
       </MinimalTypography>
     </main>
-
-    <!-- floating bottom bar -->
-    <!-- <section class="fixed bottom-0 inset-x-0 z-20 h-12 mb-4 px-6 flex items-stretch justify-center">
-        <div class="rounded-xl flex items-center px-2.5 gap-2.5 shadow-[rgba(142,140,152,0.2)_0px_0px_30px,rgba(219,216,224,0.2)_0px_0px_0px_1px] dark:shadow-[rgba(111,109,120,0.1)_0px_0px_30px,rgba(60,57,63,0.4)_0px_0px_0px_1px]">
-          <button>
-            <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /></svg>
-          </button>
-        </div>
-     </section> -->
   </div>
 </Layout>
 <script>
   import { cookies } from "@/lib/documentCookie";
   import { navigate } from "astro:transitions/client";
+
   let f = () => {
     const localToggle = document.getElementById("localToggle");
     localToggle?.addEventListener("click", () => {
-      const nextLocale = "jp";
+      const nextLocale = "en";
       cookies.set("lang", nextLocale);
-      navigate(`/${nextLocale}/`);
+      navigate(`/`);
     });
   };
   f();

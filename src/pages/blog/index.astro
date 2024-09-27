@@ -23,7 +23,7 @@ const tags = await getTags();
         image: "https://avatars.githubusercontent.com/u/41984660",
       },
       optional: {
-        locale: "en_US",
+        locale: "en-US",
         siteName: "partialty",
         description:
           "I'm Sam, a fullstack dev who also do freelances and make buttery-smooth and extremely perfomant websites. Passionate about UI/UX, cloud computing and AI.",
@@ -38,7 +38,9 @@ const tags = await getTags();
 
           <button class="themeToggle flex items-center">
             <span class="sr-only">Toggle Theme</span>
-            <span class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100">
+            <span
+              class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
+            >
               <svg
                 class="stroke-secondary-foregrouund size-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +86,10 @@ const tags = await getTags();
         <View client:load transition={{ delay: 0.5 }}>
           <nav>
             <ul class="not-prose flex gap-4 items-center justify-center">
-              <li class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
-                <a href="/">
+              <li
+                class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+              >
+                <a id="homePageLink" href="/">
                   <span class="sr-only">Retun to homepage</span>
                   <svg
                     class="size-5 stroke-secondary-foreground"
@@ -98,10 +102,11 @@ const tags = await getTags();
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                      d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path
-                      d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path
-                      d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg
+                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                    ></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path
+                      d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"
+                    ></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"
+                    ></path></svg
                   >
                 </a>
               </li>
@@ -112,3 +117,22 @@ const tags = await getTags();
     </main>
   </div>
 </Layout>
+<script>
+  import { cookies } from "@/lib/documentCookie";
+  import { prefetch } from "astro:prefetch";
+
+  const f = () => {
+    const cookieLocale = cookies.get("lang");
+    const homepageUrl =
+      cookieLocale && cookieLocale !== "en" ? `/${cookieLocale}` : "/";
+    const homepageEl = document.getElementById(
+      "homePageLink"
+    ) as HTMLAnchorElement;
+    if (homepageEl) {
+      homepageEl.href = homepageUrl;
+      prefetch(homepageUrl);
+    }
+  };
+  f();
+  document.addEventListener("astro:after-swap", f);
+</script>

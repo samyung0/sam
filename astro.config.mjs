@@ -34,4 +34,16 @@ export default defineConfig({
   image: {
     remotePatterns: [{ protocol: "https" }],
   },
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "jp", "zh-TW", "zh-HK"],
+    fallback: {
+      jp: "en",
+      "zh-TW": "en",
+      "zh-HK": "zh-TW",
+    },
+    routing: {
+      fallbackType: "redirect"
+    }
+  }
 });

@@ -61,6 +61,11 @@
     scrollbar-color: var(--scrollbar-color) transparent;
     scrollbar-width: thin;
   }
+
+  .jp {
+    font-family: "Noto Sans JP Variable", system-ui, sans-serif;
+  }
+  
   :root {
     --scrollbar-color: rgba(0, 0, 0, 0.3);
   }
