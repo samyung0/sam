@@ -45,5 +45,5 @@ export default defineConfig({
     routing: {
       fallbackType: "redirect"
     }
-  }
+  },
 });

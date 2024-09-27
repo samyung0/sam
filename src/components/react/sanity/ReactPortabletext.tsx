@@ -5,14 +5,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useState, useEffect } from "react";
 
 const ReactPortabletext = ({ post }: { post: Post }) => {
-  const [shiki, setShiki] = useState<typeof shikiType>();
   const [highlighter, setHighlighter] = useState<shikiType.HighlighterCore>();
   const [loadedLangs, setLoadedLangs] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     (async () => {
-      const shiki = await import("shiki");
-      setShiki(shiki);
+      const engine = (
+        await import("shiki/dist/engine-javascript.d.mts")
+      ).createJavaScriptRegexEngine();
+      const shiki = await import("shiki/dist/core.d.mts");
       setHighlighter(
         await shiki.createHighlighterCore({
           langs: [import("shiki/langs/tsx.mjs")],
@@ -23,7 +24,7 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
             ts: "tsx",
           },
           themes: [import("shiki/themes/catppuccin-mocha.mjs")],
-          engine: shiki.createJavaScriptRegexEngine(),
+          engine: engine,
         })
       );
       setLoadedLangs({
@@ -122,19 +123,20 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
               !highlighter ||
               (!!props.value.language && !loadedLangs[props.value.language])
             ) {
-              if (highlighter && shiki) {
-                highlighter
-                  .loadLanguage(
-                    shiki.bundledLanguages[
-                      props.value.language as shikiType.BundledLanguage
-                    ]
-                  )
+              if (highlighter) {
+                // yea dont do this in prod, just load the web bundle
+                // this is for maximizing lighthouse score
+                import(
+                  `../../../../node_modules/shiki/dist/langs/${props.value.language}.mjs`
+                )
                   .then(() => {
-                    console.log("loaded", props.value.language);
                     setLoadedLangs({
                       ...loadedLangs,
                       [props.value.language]: true,
                     });
+                  })
+                  .catch(() => {
+                    console.log("failed to load", props.value.language);
                   });
               }
               return (

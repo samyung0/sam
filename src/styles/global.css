@@ -65,6 +65,10 @@
   .jp {
     font-family: "Noto Sans JP Variable", system-ui, sans-serif;
   }
+
+  .zh {
+    font-family: "Noto Sans TC Variable", system-ui, sans-serif;
+  }
   
   :root {
     --scrollbar-color: rgba(0, 0, 0, 0.3);
