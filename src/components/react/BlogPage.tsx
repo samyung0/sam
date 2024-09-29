@@ -30,7 +30,10 @@ const BlogItem = ({ post }: { post: Post }) => {
     <a className="block" href={`/blog/${post.slug}`}>
       <div className="py-3 px-3 -ml-3 rounded-md hover:bg-muted transition-all duration-300 ease-in-out flex justify-between">
         <h2 className="text-secondary-foreground">{post.name}</h2>
-        <time className="text-sm text-seconday">
+        <time
+          dateTime={dayjs(post._createdAt).format("YYYY-MM-DD")}
+          className="text-sm text-seconday"
+        >
           {dayjs(post._createdAt).format("DD/MM/YYYY")}
         </time>
       </div>

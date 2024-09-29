@@ -40,7 +40,9 @@ const updated = dayjs(post._updatedAt).format("DD-MM-YYYY");
         publishedTime: published,
         modifiedTime: updated,
         authors: ["Yung Chin Pang, Sam"],
-        tags: post.tags.map((tag) => tags.find((t) => t.slug === tag)?.name ?? ""),
+        tags: post.tags.map(
+          (tag) => tags.find((t) => t.slug === tag)?.name ?? ""
+        ),
       },
     }}
   />
@@ -50,7 +52,9 @@ const updated = dayjs(post._updatedAt).format("DD-MM-YYYY");
         <!-- nav section with theme toggle -->
         <nav class="pb-12 not-prose flex items justify-between">
           <a href="/blog" class="flex gap-1 items-center">
-            <span class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100">
+            <span
+              class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+            >
               <svg
                 class="size-3 stroke-secondary-foreground"
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,15 +66,18 @@ const updated = dayjs(post._updatedAt).format("DD-MM-YYYY");
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l14 0"
-                ></path><path d="M5 12l6 6"></path><path d="M5 12l6 -6"></path></svg
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                  d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path
+                  d="M5 12l6 -6"></path></svg
               >
             </span>
             <span class="text-sm text-primary"> return to all posts </span>
           </a>
           <button class="themeToggle flex items-center">
             <span class="sr-only">Toggle Theme</span>
-            <span class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100">
+            <span
+              class="themeToggleSun opacity-70 transition-all duration-300 hover:opacity-100"
+            >
               <svg
                 class="stroke-secondary-foregrouund size-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,8 +126,18 @@ const updated = dayjs(post._updatedAt).format("DD-MM-YYYY");
 
         <!-- date -->
         <section class="not-prose float-right flex flex-col gap-1">
-          <small class="text-xs">Published: <time>{published}</time></small>
-          <small class="text-xs">Last Updated: <time>{updated}</time></small>
+          <small class="text-xs"
+            >Published: <time
+              datetime={dayjs(post._createdAt).format("YYYY-MM-DD")}
+              >{published}</time
+            ></small
+          >
+          <small class="text-xs"
+            >Last Updated: <time
+              datetime={dayjs(post._updatedAt).format("YYYY-MM-DD")}
+              >{updated}</time
+            ></small
+          >
         </section>
       </Typography>
     </article>

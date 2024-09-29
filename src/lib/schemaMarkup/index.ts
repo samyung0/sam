@@ -56,11 +56,20 @@ const indexSchemaMarkup: Graph = {
         credentialCategory: "Bachelor's degree",
         educationalLevel: "Advanced",
       },
+      estimatedSalary: {
+        "@type": "MonetaryAmount",
+        currency: "HKD",
+        value: "40000",
+      },
       experienceRequirements: "Expertise in mobile app development",
       occupationalCategory: "Software Development",
       occupationLocation: {
         "@type": "AdministrativeArea",
-        address: "Hong Kong"
+        name: "Overfitting Co.",
+        address: "Hong Kong",
+        telephone: "+852 0000 0000",
+        logo: "https://media.licdn.com/dms/image/v2/D4D0BAQGH0O9kT95dsg/company-logo_200_200/company-logo_200_200/0/1713440081260/overfitting_co_logo?e=1735776000&v=beta&t=5SuNpa0YvhOI62wCYdPhPRQGCkopIhCojj0K-iIxOcA",
+        keywords: "AI travel app, React Native, Firebase, Tailwind CSS",
       },
       name: "Software Engineer",
       description: "Software Engineer at Partialty",
