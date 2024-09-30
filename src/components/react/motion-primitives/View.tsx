@@ -42,10 +42,10 @@ export function View({
 }: InViewProps) {
   return (
     <motion.section
-      initial="hidden"
-      animate={"visible"}
-      variants={variants}
-      transition={transition}
+      // initial="hidden"
+      // animate={"visible"}
+      // variants={variants}
+      // transition={transition}
     >
       {children}
     </motion.section>
