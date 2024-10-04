@@ -41,7 +41,7 @@ const posts = await getPosts();
     <main class="pt-20 pb-24 px-4">
       <MinimalTypography>
         <!-- profile icon -->
-        <View client:only variants={blurVariants} transition={blurTransition}>
+        <View client:only="react" variants={blurVariants} transition={blurTransition}>
           <div class="flex justify-between items-center">
             <header>
               <div class="flex items-center">
@@ -141,7 +141,7 @@ const posts = await getPosts();
 
         <!-- bio -->
         <View
-          client:only
+          client:only="react"
           variants={blurVariants}
           transition={{ ...blurTransition, delay: 0.1 }}
         >
@@ -158,7 +158,7 @@ const posts = await getPosts();
 
         <!-- current status -->
         <View
-          client:only
+          client:only="react"
           variants={blurVariants}
           transition={{ ...blurTransition, delay: 0.3 }}
         >
@@ -192,7 +192,7 @@ const posts = await getPosts();
 
         <!-- blog -->
         <View
-          client:only
+          client:only="react"
           variants={blurVariants}
           transition={{ ...blurTransition, delay: 0.5 }}
         >
@@ -208,7 +208,7 @@ const posts = await getPosts();
 
         <!-- links -->
         <View
-          client:only
+          client:only="react"
           variants={blurVariants}
           transition={{ ...blurTransition, delay: 0.5 }}
         >
