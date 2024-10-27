@@ -4,6 +4,7 @@ import MinimalTypography from "@/layouts/MinimalTypography.astro";
 import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
 import ProfilePic from "@/assets/profile.jpg";
+import StableStudio from "@/assets/stablestudio.svg";
 import { Image } from "astro:assets";
 import {
   View,
@@ -168,7 +169,7 @@ const posts = await getPosts();
                 Co.的首席開發者。負責開發一個能根據用戶的的性格和興趣創建最合適的行程的AI旅行App。
               </li>
               <li>
-                為香港，台灣和其他國家的客戶製作定制網站。優先考慮互動性，性能和SEO。
+                <a href="https://stablestudio.org" target="_blank">Stable Studio</a>創辦人。為香港，台灣和其他國家的客戶製作定制網站。注重動態效果，互動性，性能和SEO。
               </li>
               <li>
                 創立了<a href="https://www.partialty.com" target="_blank"
@@ -259,6 +260,18 @@ const posts = await getPosts();
                   <Image
                     src={Partialty}
                     alt="Partialty"
+                    class="size-5 object-contain"
+                  />
+                </a>
+              </li>
+              <li
+                class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+              >
+                <a href="https://stablestudio.org" target="_blank">
+                  <span class="sr-only">Stable Studio</span>
+                  <Image
+                    src={StableStudio}
+                    alt="Stabe Studio"
                     class="size-5 object-contain"
                   />
                 </a>

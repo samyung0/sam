@@ -11,6 +11,7 @@ import {
 } from "@/components/react/motion-primitives/View";
 import { BlogItem } from "@/components/react/BlogItem";
 import Partialty from "../assets/partialty.svg";
+import StableStudio from "../assets/stablestudio.svg";
 import { getPosts } from "@/lib/sanity";
 import { indexSchemaMarkup } from "@/lib/schemaMarkup";
 
@@ -171,8 +172,8 @@ const posts = await getPosts();
                 users' personalities.
               </li>
               <li>
-                I craft custom websites for clients in HK, TW and other
-                countries. Prioritizing interactivity, performance, and SEO.
+                Founder of <a href="https://stablestudio.org" target="_blank">Stable Studio</a> which crafts custom websites for clients in HK, TW and other
+                countries. Prioritizing animations, performance, and SEO.
               </li>
               <li>
                 Working on the E-learning platform <a
@@ -267,6 +268,18 @@ const posts = await getPosts();
                   <Image
                     src={Partialty}
                     alt="Partialty"
+                    class="size-5 object-contain"
+                  />
+                </a>
+              </li>
+              <li
+                class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+              >
+                <a href="https://stablestudio.org" target="_blank">
+                  <span class="sr-only">Stable Studio</span>
+                  <Image
+                    src={StableStudio}
+                    alt="Stabe Studio"
                     class="size-5 object-contain"
                   />
                 </a>

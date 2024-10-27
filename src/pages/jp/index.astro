@@ -4,6 +4,7 @@ import MinimalTypography from "@/layouts/MinimalTypography.astro";
 import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
 import ProfilePic from "@/assets/profile.jpg";
+import StableStudio from "@/assets/stablestudio.svg";
 import { Image } from "astro:assets";
 import {
   View,
@@ -167,7 +168,7 @@ const posts = await getPosts();
                 Co.でAI旅行アプリを開発中。アプリはユーザーの好みや趣味に合わせて旅行プランを作成する。
               </li>
               <li>
-                フリーランサーlとしてさまざまなWebサイトを制作。インタラクティブ性、パフォーマンス、SEOを重視。
+                <a href="https://stablestudio.org" target="_blank">Stable Studio</a>を設立し、さまざまなWebサイトを制作する。インタラクティブ性、パフォーマンス、SEOを重視。
               </li>
               <li>
                 サイドプロジェクトとしてeラーニングプラットフォーム <a
@@ -258,6 +259,18 @@ const posts = await getPosts();
                   <Image
                     src={Partialty}
                     alt="Partialty"
+                    class="size-5 object-contain"
+                  />
+                </a>
+              </li>
+              <li
+                class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+              >
+                <a href="https://stablestudio.org" target="_blank">
+                  <span class="sr-only">Stable Studio</span>
+                  <Image
+                    src={StableStudio}
+                    alt="Stabe Studio"
                     class="size-5 object-contain"
                   />
                 </a>
