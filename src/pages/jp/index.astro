@@ -4,7 +4,6 @@ import MinimalTypography from "@/layouts/MinimalTypography.astro";
 import Layout from "@/layouts/Layout.astro";
 import { SEO } from "astro-seo";
 import ProfilePic from "@/assets/profile.jpg";
-import StableStudio from "@/assets/stablestudio.svg";
 import { Image } from "astro:assets";
 import {
   View,
@@ -15,6 +14,7 @@ import { BlogItem } from "@/components/react/BlogItem";
 import Partialty from "@/assets/partialty.svg";
 import { getPosts } from "@/lib/sanity";
 import { indexSchemaMarkup } from "@/lib/schemaMarkup";
+import Stablestudio from "@/components/ui/Stablestudio.astro";
 
 const posts = await getPosts();
 ---
@@ -252,6 +252,14 @@ const posts = await getPosts();
                 </a>
               </li>
               <li
+                class="flex items-center opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
+              >
+                <a href="https://stablestudio.org" target="_blank" class="inline-block size-5">
+                  <span class="sr-only">Stable Studio</span>
+                  <Stablestudio />
+                </a>
+              </li>
+              <li
                 class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
               >
                 <a href="https://www.partialty.com" target="_blank">
@@ -259,18 +267,6 @@ const posts = await getPosts();
                   <Image
                     src={Partialty}
                     alt="Partialty"
-                    class="size-5 object-contain"
-                  />
-                </a>
-              </li>
-              <li
-                class="opacity-65 transition-all duration-300 ease-in-out hover:opacity-100"
-              >
-                <a href="https://stablestudio.org" target="_blank">
-                  <span class="sr-only">Stable Studio</span>
-                  <Image
-                    src={StableStudio}
-                    alt="Stabe Studio"
                     class="size-5 object-contain"
                   />
                 </a>
