@@ -3,6 +3,7 @@ import type { Post } from "@/lib/sanity";
 import type * as shikiType from "shiki";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState, useEffect } from "react";
+import { createJavaScriptRegexEngine, createHighlighter } from "shiki";
 
 const ReactPortabletext = ({ post }: { post: Post }) => {
   const [highlighter, setHighlighter] = useState<shikiType.HighlighterCore>();
@@ -10,13 +11,10 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
 
   useEffect(() => {
     (async () => {
-      setTimeout(async () => {
-        const engine = (
-          await import("shiki/dist/engine-javascript.d.mts")
-        ).createJavaScriptRegexEngine();
-        const shiki = await import("shiki");
+    //   setTimeout(async () => {
+        const engine = createJavaScriptRegexEngine();
         setHighlighter(
-          await shiki.createHighlighter({
+          await createHighlighter({
             langs: [import("shiki/langs/tsx.mjs")],
             langAlias: {
               typescript: "tsx",
@@ -38,7 +36,7 @@ const ReactPortabletext = ({ post }: { post: Post }) => {
           txt: true,
           plain: true,
         });
-      }, 1500);
+    //   }, 1500);
     })();
   }, []);
 
